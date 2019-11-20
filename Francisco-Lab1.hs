@@ -1,0 +1,250 @@
+-- CSci 60 Lab 1
+
+---------------- Part 1 ----------------
+
+-- Work through Chapters 1 - 3 of Learn You a Haskell for Great Good!
+-- Type in the examples and make sure you understand the results.
+-- Ask questions about anything you don't understand! This is your
+-- chance to get off to a good start understanding Haskell.
+
+---------------- Part 2 ----------------
+
+-- The Haskell Prelude has a lot of useful built-in functions related
+-- to numbers and lists.  In Part 2 of this lab, you will catalog many
+-- of these functions.
+
+data Color = Red | Orange | Yellow | Green | Blue | Violet
+     deriving (Show, Eq, Ord, Enum)
+
+-- For each of the Prelude functions listed below, give its type,
+-- describe in your own words what the function does, answer any
+-- questions specified, and give several examples of its use, Does
+-- the function apply at all to the "Color" type defined above?
+
+
+-- succ 
+      -- type: Enum a => a -> a
+      -- desc: takes a defined input and gives the succesor of that input 
+      -- ex:  Input: succ Red, Output: Orange | Input: succ Blue, Output: Violet
+-- pred
+      -- type: Enum a => a -> a
+      -- desc: returns the preceding number of that input
+      -- ex: Input: Pred Yellow, Output: Orange | Input: Pred 'C', Output: 'B'
+-- toEnum
+      -- type: Enum a => Int -> a
+      -- desc: Convert an type 
+      -- ex: Input: toEnum 5 :: "Color", Output: Violet | Input: toEnum 35::Char Output:'#'
+-- fromEnum
+      -- type: Enum a => a -> Int
+      -- desc: returns the specified position for the inputed item
+      -- ex: Input: fromEnum '$', Output: 36 | Input: fromEnum ')', Output: 41
+-- enumFrom
+      -- type: Enum a => a -> [a]
+      -- desc: returns variables in an array t a specified position
+      -- ex: Intput: take 10 (enumFrom 'a'), Output: abcdefghij | Input: take 10 (enumFrom 10), Output: [10,11,12,13,14,15,16,17,18,19]
+-- enumFromThen
+      -- type: Enum a => a -> a 	-> [a]
+      -- desc: creates a list that returns the starting variable and ouputing the next variable taking into consideration the distances between them
+      -- ex: Input: take 10 (enumFromThen 2 4), Output: [2,6,8,10,12,14,16,18,20,22] | Input: take 10 (enumFromThen 'A' 'C'), Output: "ACEGIKMOQS"
+-- enumFromTo
+      -- type: Enum a => a -> a -> [a]
+      -- desc: creates a list that starts from the first element and ends at the second element
+      -- ex: Input: enumFromTo 1 3, Output: [1,2,3] | Input: enumFromTo 'a' 'c', Output: "abc"
+-- enumFromThenTo
+      -- type: Enum a => a -> a -> a -> [a]
+      -- desc: returns an array from the the first to the third element while taking into consideration of the ditance from the second element
+      -- ex: Input: enumFromThenTo 2 4 10, Output: [2,4,6,8,10] | Input: enumFromThenTo 'A''D''G', Output: "ADG"
+-- ==,
+      -- type: Eq a => a -> a -> Bool
+      -- desc: an operator that will give true or false depending on statement
+      -- ex: Input: Violet = Violet Output: True | Input: 3 == 5, Output: False
+-- /=
+      -- type: Eq a => a -> a -> Bool
+      -- desc: an operator that makes non equalities true and equalities false.
+      -- ex: Input: 4 /= 5, Output: True | Input: 6 /= 6, Output: False
+-- quot
+      -- type: Integral a => a -> a -> a
+      -- desc: Divides first number by the second number and rounds it towards zero
+      -- ex: Input: 3 `quot` 12, Output: 0 | Input: 44 `quot` 12 Output: 3
+-- div
+      -- type: Integral a => a -> a -> a
+      -- desc: Divides the first number inputted into the second number inputted.
+      -- ex: Input: 6 `div` 3, Output: 2 | Input: 9 `div` 3, Output: 3
+      -- q: what makes this different from quot?  A: Quot divides the the first number by the second number without regards to the remainder
+-- rem
+      -- type: Integral a => a -> a -> a
+      -- desc: returns the remainder of two integers that are being divided
+      -- ex: Input: 4 `rem` 12, Output: 4 | Input: 44 `rem` 12, Output: 8
+-- mod
+      -- type: Integral a => a -> a -> a
+      -- desc: just like modulus returns the remainder of two integers while rounding towards negative infinity
+      -- ex: Input: 3 `mod` 12 Output: 3 | Input:  -33 `mod` 12 Output: -9
+      -- q: what makes this different from rem? A: rem returns the remainder of two integers whereas mod returns a remainder rounded towards negative infinity
+-- quotRem
+      -- type: Integral a => a -> Rational
+      -- desc: returns a tuple
+      -- ex: Input: quotRem 12 3 Output: (4,0) | Input: quotRem 10 20 Output: (0,10)
+-- divMod
+      -- type: Integral a => a -> a -> (a,a)
+      -- desc: returns a tuple with the result of integral division and modulus
+      -- ex: Input: divMod (-4) 10 Output: (-1,6)| Input: divMod 3 8 Output: (0,3)
+-- &&
+      -- type: Bool -> Bool -> Bool
+      -- desc: logical and that uses truth tables
+      -- ex: Input: True && True, Output: True | Input: False && False, Output: False
+-- ||
+      -- type: Bool -> Bool -> Bool
+      -- desc: logical or that outputs true or false depending on the accuracy of the input
+      -- ex: Input: False || False, Output: False | Input: 1 < 3 || (2/4) > 12, Output: True
+-- ++
+      -- type: [a] -> [a] -> [a]
+      -- desc: Combines two lists together
+      -- ex: Input: [1,2,3] ++ [4,10], Output: [1,2,3,4,10] | Input "Hey" ++ ", " ++ "guys" | Output: "Hey, guys"
+-- compare
+      -- type: Ord a => a -> a -> Ordering
+      -- desc: The function returns LT for less thab, EQ for greather than and GT for greather than depending on the numbers and ordering of the numbers
+      -- ex: Input: compare 10 10, Output: EQ | Input: compare 3 2, Output: GT
+-- <, >
+      -- type: Ord a => a -> a -> Bool
+      -- desc: less than and greather than operator that compares the 2 inputed numbers with either sign in between those numbers
+      -- ex: Input: 4 < 3, Output: False | Input: 3 > 2, Output: True
+-- max
+      -- type: Ord a => a -> a -> a
+      -- desc: returns the maximum number of the two inputed numbers
+      -- ex: Input: max 4 3, Output: 4 | Input: max 3 3, Output: 3
+-- min
+      -- type: Ord a => a -> a -> a
+      -- desc: returns the minimum number of the two inputed numbers
+      -- ex: Input: min 4 3, Output: 3 | Input: min 3 10, Output: 3
+-- ^
+      -- type: (Num a, Integral b) => a -> b -> a
+      -- desc: carot operator which does the power function, and the exponents must be nonnegative integers.
+      -- ex: Input: 2 ^ 2, Output: 4 | Input: 3 ^ 4, Output: 81
+-- all
+      -- type: (a -> Bool) -> [a] -> Bool
+      -- desc: returns true if all the numbers in the list fulfill the condition, returns false if any of the numbers in the list fail to fulfill the condition.
+      -- ex: Input: all(==2) [2,2,1,2], Output: False | Input: all (>5) [6,7,8], Output: True
+-- any
+      -- type: (a -> Bool) -> [a] -> Bool
+      -- desc: if one of the items in the list fulfill the condition it returns true,
+      -- ex: Input: any(2==) [0,1,2,2,3,4,5]  Output: True | Input: any even [1,4,5,7,9] Output: True
+-- break
+      -- type: (a -> Bool) -> [a] -> ([a],[a])
+      -- desc: creates a break in a list and splits them into two 
+      -- ex: Input: break (3==) [1,2,3,4,5,6,7] Output: ([1,2],[3,4,5,6,7]) | Input: break (0==) [1,2,3,] Output: ([1,2,3],[])
+-- concat
+      -- type: [[a]] -> [a]
+      -- desc: accepts a list of lists and puts them together
+      -- ex: Input: [[1,2,3], [1,2,3], [1,2,3]]  Output: [1,2,3,1,2,3,1,2,3] | Input: concat [[4,5,2], [3,2,4]] Output: [4,5,2,3,2,4]
+-- const
+      -- type: a -> b -> a
+      -- desc: creates a set elements for every element in a list
+      -- ex: Input: map (const 2) [1,2,3] Output: [2,2,2] | Input: map (const 3) [1,2,3,4,5] Output: [3,3,3,3,3]	
+-- cycle
+      -- type: [a] -> [a]
+      -- desc: constantly loops a list infinitely
+      -- ex: Input: [1,2,3] Output: 1,2,3,1,2,3... | Input: [2,4,6] Output: 2,4,6,2,4,6...
+-- drop
+      -- type: Int -> [a] -> [a]
+      -- desc: removes the beginning elements of a list based on number of user input 
+      -- ex: Input: drop 3 [1,2,3,4,5] Output: [4,5] | Input: drop 1 [1] Output: []
+-- take
+      -- type: Int -> [a] -> [a]
+      -- desc: takes the first elements of a list based on the argument number
+      -- ex: Input: take 4 [1,2,3,4,5,6,7,8,9,10]  Output: [1,2,3,4] | Input: take 10 (repeat 10) Output: [10,10,10,10,10,10,10,10,10,10]
+-- dropWhile
+      -- type: (a -> Bool) -> [a] -> [a]
+      -- desc: creates a list from another list  but will only take items from the other list but without the condition
+      -- ex: Input: dropWhile (<3) [1,2,3] Output: [3] | Input: dropWhile odd [1,2,3,4,5,6,7,8,9,10] Output: [2,3,4,5,6,7,8,9,10]
+-- takeWhile
+      -- type: (a -> Bool) -> [a] -> [a]
+      -- desc: creates a list from another list but will only take items from the other list if a condition is met
+      -- ex: Input: takeWhile (<3) [0,3,4,5] Output: [0] | Input: takeWhile (>3) [0,3,4,5] Output: []
+-- elem
+      -- type: Eq a => a -> [a] -> Bool
+      -- desc: returns true if the list contains the specified arument if not returns false
+      -- ex: Input: 14 `elem` [1..14] Output: True | Input: elem 1 [2,3,4,5] Output: False
+-- even
+      -- type: Integral a => a -> Bool
+      -- desc: returns true if the input is even, false if otherwise
+      -- ex: Input: even 2  Output: True | Input: even 3 Output: False
+-- filter 
+      -- type: (a -> Bool) -> [a] -> [a]
+      -- desc: returns a created list but will only return the items that meet the condition
+      -- ex: Input: filter (>4) [4,5,6,7,8] Output: [5,6,7,8] | Input: filter even [2,4,5,6,7,8,9,10] Output: [2,4,6,8,10]
+-- fst
+      -- type: (a,b) -> a
+      -- desc: returns the first element in a pair
+      -- ex: Input: fst(1,4)  Output: 1 | Input: fst{4,5} Output: 4
+-- gcd
+      -- type: Integral a => a -> a -> a
+      -- desc: returns the greatest common divisor
+      -- ex: Input: gcd 12 2 Output: 2 | Input: gcd 10 3 Output: 1
+-- head
+      -- type: [a] -> a
+      -- desc: returns the first item in a list
+      -- ex: Input: head [1,2,3,4,5,6]  Output: 1 | Input: head "Hey" Output: 'H'
+-- id
+      -- type: a -> a
+      -- desc: identifies the user input item
+      -- ex: Input: id 1 Output: 1| Input: id 'a' Output: 'a'
+-- init 
+      -- type: init
+      -- desc: accepts a list and returns the list except for the last item in the list
+      -- ex: Input: init [1,2,3,4,5,6,7,8,9,10] Output: [1,2,3,4,5,6,7,8,9] | Input: init "Hello World" Output: "Hello Worl"
+-- iterate
+      -- type: (a -> a) -> a -> [a]
+      -- desc: creates a list and applies a function to each item in the list aplying a value based on the condition
+      -- ex: Input: take 3 (iterate (2*)1) Output: [1,2,4] | Input: take 3 (iterate (3*)1) Output: [1,3,9]
+-- last
+      -- type: [a] -> a
+      -- desc: returns the last element of a list
+      -- ex: Input: last [1,2,3]  Output: 3 | Input: last [1,2,3,4,5,6] Output: 6
+-- lcm
+      -- type: Integral a => a -> a -> a
+      -- desc: prints out the lowest common multiple
+      -- ex: Input: lcm 2 4  Output: 4 | Input: lcm 10 10 Output: 10
+-- length
+      -- type: [a] -> Int
+      -- desc: returns the length(number) of items in a list
+      -- ex: Input: length[Red,Orange,Yellow,Green,Blue,Violet]  Output: 6 | Input: length "HelloWorld" Output:10
+-- map
+      -- type: (a -> b) -> [a] -> [b]
+      -- desc: returns a list with a function recall that will be applied to that list
+      -- ex: Input: map abs [-1,-3,4,-2] Output: [1,3,4,2]| Input: map (2*) [1,2] Output: [2,4]
+-- null
+      -- type: [a] -> Bool
+      -- desc: returns True if a list empty if not returns false
+      -- ex: Input: null [] Output: True | Input: null [1,2,3,4,5] Output: False
+-- odd
+      -- type: Integral a => a -> Bool
+      -- desc: sees whether or not the number is odd if it is returns True, if even returns false
+      -- ex: Input: odd 3  Output: True | Input: odd 2 Output: 2
+-- repeat
+      -- type: a -> [a]
+      -- desc: creats a list of set number and makes all items of a list the first argument
+      -- ex: Input: take 5 (repeat) Output: [2,2,2,2,2]| Input: take 2 (repeat 'C') Output: "CC"
+-- replicate
+      -- type: Int -> a -> [a]
+      -- desc: creates a list with its length based on the first argument and sets the items with the second arguments value
+      -- ex: Input: replicate 2 5 Output: [5,5] | Input: replicate 3 "A" Output: ["A","A","A"]
+-- reverse
+      -- type: [a] -> [a]
+      -- desc: creates a new string based on the original and puts them in reverse order
+      -- ex: Input: reverse [1..3]  Output: [3,2,1] | Input: reverse ['a'..'c'] Output: "cba"
+-- snd
+      -- type: (a,b) -> b
+      -- desc: returns the second item in a pair
+      -- ex: Input: snd(3,4) Output: 4 | Input: snd(1,5) Output: 5
+-- span
+      -- type: (a -> Bool) -> [a] -> ([a], [a])
+      -- desc: creates a break in a list if the condition is met
+      -- ex: Input: span (/=3) [1,2,3,3,3,4,5,6] Output: ([1,2],[3,3,3,4,5,6]) | Input: span (<1) [-1,1,2,3,4,5] Output: ([-1],[1,2,3,4,5])
+-- splitAt
+      -- type: Int -> [a] -> ([a],[a])
+      -- desc: splits a list based on which element of the list
+      -- ex: Input: splitAt 4 [1,2,3,3,4,4,5,6,7]  Output: ([1,2,3,3],[4,4,5,6,7]) | Input: splitAt 5 [5,6,7,8,12,2,3,5,5] Output: ([5,6,7,8,12],[2,3,5,5])
+-- zip
+      -- type: [a] -> [b] -> [(a,b)]
+      -- desc: takes two lists and pairs two elements in the same element
+      -- ex: Input: zip [1,2][1,2] Output: [(1,1),(2,2)] | Input: zip [1,2,3,4][1,2] Output: [(1,1),(2,2)]
